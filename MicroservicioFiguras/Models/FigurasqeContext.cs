@@ -116,6 +116,9 @@ public partial class FigurasqeContext : DbContext
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .HasColumnName("country");
+            entity.Property(e => e.Email)
+                .HasMaxLength(120)
+                .HasColumnName("email");
             entity.Property(e => e.Genre)
                 .HasMaxLength(1)
                 .HasColumnName("genre");
@@ -123,6 +126,9 @@ public partial class FigurasqeContext : DbContext
             entity.Property(e => e.Neurodivergency)
                 .HasMaxLength(50)
                 .HasColumnName("neurodivergency");
+            entity.Property(e => e.PasswordHash)
+                .HasMaxLength(255)
+                .HasColumnName("password_hash");
             entity.Property(e => e.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")

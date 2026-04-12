@@ -2626,11 +2626,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Nueva carpeta\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+      "projectUniqueName": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
       "projectName": "MicroservicioFiguras",
-      "projectPath": "C:\\Nueva carpeta\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+      "projectPath": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
       "packagesPath": "C:\\Users\\seth\\.nuget\\packages\\",
-      "outputPath": "C:\\Nueva carpeta\\MicroservicioFiguras\\obj\\",
+      "outputPath": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\seth\\AppData\\Roaming\\NuGet\\NuGet.Config",

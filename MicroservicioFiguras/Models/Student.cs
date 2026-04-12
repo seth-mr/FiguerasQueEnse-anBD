@@ -19,6 +19,10 @@ public partial class Student
 
     public DateTime? RegistrationDate { get; set; }
 
+    public string? Email { get; set; }
+
+    public string? PasswordHash { get; set; }
+
     public virtual Tutor? IdTutorNavigation { get; set; }
 
     public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();

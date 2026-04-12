@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zdASBVMvMFY=",
+  "dgSpecHash": "s+Dtepfw8k0=",
   "success": true,
-  "projectFilePath": "C:\\Nueva carpeta\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+  "projectFilePath": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\seth\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\seth\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.2\\microsoft.aspnetcore.openapi.10.0.2.nupkg.sha512",
