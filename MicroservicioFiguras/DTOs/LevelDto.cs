@@ -17,6 +17,7 @@ public class CreateLevelDto
     [RegularExpression(@"^[\p{L}0-9\s\-]{1,100}$", ErrorMessage = "Name must be 1-100 letters, numbers, spaces or hyphens.")]
     public string? Name { get; set; }
 
+    [Range(1, 10, ErrorMessage = "Difficulty must be between 1 and 10.")]
     public int? Difficulty { get; set; }
 }
 
@@ -26,5 +27,6 @@ public class UpdateLevelDto
     [RegularExpression(@"^[\p{L}0-9\s\-]{1,100}$", ErrorMessage = "Name must be 1-100 letters, numbers, spaces or hyphens.")]
     public string? Name { get; set; }
 
+    [Range(1, 10, ErrorMessage = "Difficulty must be between 1 and 10.")]
     public int? Difficulty { get; set; }
 }

@@ -64,6 +64,41 @@ public class StudentRepository : Repository<Student>, IStudentRepository
             .ToListAsync();
     }
 
+    public async Task<List<StudentDto>> GetStudentsByTutorIdAsync(int tutorId)
+    {
+        return await _context.Students
+            .Include(s => s.IdTutorNavigation)
+            .AsNoTracking()
+            .Where(s => s.IdTutor == tutorId)
+            .Select(s => new StudentDto
+            {
+                IdStudent = s.IdStudent,
+                IdTutor = s.IdTutor,
+                Email = s.Email,
+                Age = s.Age,
+                Genre = s.Genre,
+                Country = s.Country,
+                Neurodivergency = s.Neurodivergency,
+                RegistrationDate = s.RegistrationDate,
+                Tutor = s.IdTutorNavigation == null
+                    ? null
+                    : new TutorDto
+                    {
+                        IdTutor = s.IdTutorNavigation.IdTutor,
+                        Email = s.IdTutorNavigation.Email,
+                        Country = s.IdTutorNavigation.Country
+                    }
+            })
+            .ToListAsync();
+    }
+
+    public async Task<bool> IsStudentAssignedToTutorAsync(int studentId, int tutorId)
+    {
+        return await _context.Students
+            .AsNoTracking()
+            .AnyAsync(s => s.IdStudent == studentId && s.IdTutor == tutorId);
+    }
+
     public async Task<List<int>> GetSessionIdsByStudentAsync(int studentId)
     {
         return await _context.Sessions
@@ -71,6 +106,27 @@ public class StudentRepository : Repository<Student>, IStudentRepository
             .Where(s => s.IdStudent == studentId)
             .Select(s => s.IdSession)
             .ToListAsync();
+    }
+
+    public async Task<bool> IsEmailTakenAsync(string email)
+    {
+        return await _context.Students
+            .AsNoTracking()
+            .AnyAsync(s => s.Email == email);
+    }
+
+    public async Task<bool> IsEmailTakenByOtherAsync(int id, string email)
+    {
+        return await _context.Students
+            .AsNoTracking()
+            .AnyAsync(s => s.Email == email && s.IdStudent != id);
+    }
+
+    public async Task<bool> TutorExistsAsync(int tutorId)
+    {
+        return await _context.Tutors
+            .AsNoTracking()
+            .AnyAsync(t => t.IdTutor == tutorId);
     }
 
     internal static StudentDto MapStudentDto(Student student)

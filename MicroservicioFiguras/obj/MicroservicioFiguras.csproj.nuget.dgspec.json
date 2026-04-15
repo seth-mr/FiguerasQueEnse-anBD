@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {}
+    "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {}
   },
   "projects": {
-    "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {
+    "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+        "projectUniqueName": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
         "projectName": "MicroservicioFiguras",
-        "projectPath": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+        "projectPath": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
         "packagesPath": "C:\\Users\\seth\\.nuget\\packages\\",
-        "outputPath": "C:\\Nueva carpeta\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\obj\\",
+        "outputPath": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\seth\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.2, )"

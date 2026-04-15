@@ -18,7 +18,15 @@ public static class DtoValidationHelper
         var validationResults = new List<ValidationResult>();
         var isValid = Validator.TryValidateObject(dto, validationContext, validationResults, true);
 
-        errors = validationResults.Select(result => result.ErrorMessage ?? "Validation failed").ToList();
+        errors = validationResults
+            .SelectMany(result =>
+            {
+                var message = result.ErrorMessage ?? "Validation failed";
+                return result.MemberNames.Any()
+                    ? result.MemberNames.Select(member => $"{member}: {message}")
+                    : new[] { message };
+            })
+            .ToList();
         return isValid;
     }
 }

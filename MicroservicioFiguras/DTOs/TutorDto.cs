@@ -12,7 +12,7 @@ public class TutorDto
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string Email { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Za-z]{2}$", ErrorMessage = "Country must be a 2-letter code.")]
+    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
 
     public DateTime? RegistrationDate { get; set; }
@@ -27,10 +27,10 @@ public class CreateTutorDto
     public string Email { get; set; } = null!;
 
     [Required]
-    [RegularExpression(@"^.{8,255}$", ErrorMessage = "PasswordHash must be between 8 and 255 characters.")]
+    [StringLength(255, MinimumLength = 8, ErrorMessage = "PasswordHash must be between 8 and 255 characters.")]
     public string PasswordHash { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Za-z]{2}$", ErrorMessage = "Country must be a 2-letter code.")]
+    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
 }
 
@@ -41,6 +41,6 @@ public class UpdateTutorDto
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string Email { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Za-z]{2}$", ErrorMessage = "Country must be a 2-letter code.")]
+    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
 }
