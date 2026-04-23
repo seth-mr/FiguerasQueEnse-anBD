@@ -1,0 +1,62 @@
+@host = http://localhost:5124
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTc2MzUsImV4cCI6MTc3NjkyMTIzNX0.t5agNcp9bfHEE8-xHcnadW-26V8rwJi9Ab23MFXjuBs
+@studentId = 1
+@tutorId = 1
+
+### Obtener estudiantes (depende del rol del token)
+GET {{host}}/students
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Obtener estudiante por id
+  "name": "Ana Lopez Actualizada",
+GET {{host}}/students/{{studentId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Crear estudiante
+POST {{host}}/students
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "idTutor": {{tutorId}},
+  "name": "Ana Lopez",
+  "email": "ana.student@example.com",
+  "passwordHash": "StudentPass123",
+  "age": 10,
+  "genre": "F",
+  "country": "CO",
+  "neurodivergency": "None"
+}
+
+### Actualizar estudiante
+PUT {{host}}/students/{{studentId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "idTutor": {{tutorId}},
+  "name": "Ana Lopez Actualizada",
+  "email": "ana.student@example.com",
+  "passwordHash": "StudentPass1234",
+  "age": 11,
+  "genre": "F",
+  "country": "CO",
+  "neurodivergency": "None"
+}
+
+### Obtener ids de estudiantes por tutor
+GET {{host}}/students/tutor/{{tutorId}}/ids
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Obtener ids de sesiones por estudiante
+GET {{host}}/students/{{studentId}}/sessions/ids
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Eliminar estudiante
+DELETE {{host}}/students/{{studentId}}
+Authorization: Bearer {{token}}
+Accept: application/json

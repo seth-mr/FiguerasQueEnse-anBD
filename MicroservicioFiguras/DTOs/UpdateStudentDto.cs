@@ -8,6 +8,10 @@ public class UpdateStudentDto
     public int? IdTutor { get; set; }
 
     [Required]
+    [StringLength(120, MinimumLength = 1, ErrorMessage = "Name must be between 1 and 120 characters.")]
+    public string Name { get; set; } = null!;
+
+    [Required]
     [EmailAddress]
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string? Email { get; set; }

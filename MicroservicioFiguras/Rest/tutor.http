@@ -1,0 +1,56 @@
+@host = http://localhost:5124
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTgxMTYsImV4cCI6MTc3NjkyMTcxNn0.6tc7m-EWIyT4cqHxjdSQjy_LEGh1iV-th6mORTOlNWA
+@tutorId = 1
+
+### Obtener todos los tutores
+GET {{host}}/tutors
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Obtener tutor por id
+GET {{host}}/tutors/{{tutorId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Obtener estudiantes asignados a un tutor
+GET {{host}}/tutors/{{tutorId}}/students
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Crear tutor
+POST {{host}}/tutors
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Carlos Ramirez",
+  "email": "carlos.tutor@example.com",
+  "passwordHash": "TutorPass123",
+  "country": "CO"
+}
+
+### Actualizar tutor
+PUT {{host}}/tutors/{{tutorId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Carlos Ramirez Actualizado",
+  "email": "carlos.tutor@example.com",
+  "country": "CO"
+}
+
+### Asignar tutor a estudiante por email
+POST {{host}}/tutors/assign-student
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "studentEmail": "ana.student@example.com",
+  "tutorEmail": "carlos.tutor@example.com"
+}
+
+### Eliminar tutor
+DELETE {{host}}/tutors/{{tutorId}}
+Authorization: Bearer {{token}}
+Accept: application/json

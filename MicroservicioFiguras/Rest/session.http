@@ -1,0 +1,43 @@
+@host = http://localhost:5124
+@token = REEMPLAZAR_JWT
+@sessionId = 1
+@studentId = 1
+
+### Obtener todas las sesiones
+GET {{host}}/sessions
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Obtener sesion por id
+GET {{host}}/sessions/{{sessionId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Crear sesion
+POST {{host}}/sessions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "idStudent": {{studentId}},
+  "beginningDate": "2026-04-22T10:00:00",
+  "endDate": "2026-04-22T10:30:00",
+  "device": "Tablet"
+}
+
+### Actualizar sesion
+PUT {{host}}/sessions/{{sessionId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "idStudent": {{studentId}},
+  "beginningDate": "2026-04-22T11:00:00",
+  "endDate": "2026-04-22T11:45:00",
+  "device": "Laptop"
+}
+
+### Eliminar sesion
+DELETE {{host}}/sessions/{{sessionId}}
+Authorization: Bearer {{token}}
+Accept: application/json

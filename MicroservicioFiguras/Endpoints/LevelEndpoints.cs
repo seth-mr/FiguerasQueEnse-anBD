@@ -14,16 +14,13 @@ namespace MicroservicioFiguras.Endpoints
                 Results.Ok(await repository.GetAllWithResultsAsync()));
 
             app.MapGet("/levels/{id:int}", async (int id, ILevelRepository repository) =>
-            {
-                var level = await repository.GetByIdWithResultsAsync(id);
-                return level is not null ? Results.Ok(level) : Results.NotFound();
-            });
+                await EndpointResponseHelper.GetByIdAsync(id, repository.GetByIdWithResultsAsync));
 
             app.MapPost("/levels", async (CreateLevelDto dto, ILevelRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var level = new Level
@@ -33,15 +30,14 @@ namespace MicroservicioFiguras.Endpoints
                 };
 
                 var created = await repository.AddAsync(level);
-                var createdDto = await repository.GetByIdWithResultsAsync(created.IdLevel);
-                return createdDto is not null ? Results.Created($"/levels/{createdDto.IdLevel}", createdDto) : Results.BadRequest();
+                return await EndpointResponseHelper.CreateWithDetailsAsync(created.IdLevel, "levels", repository.GetByIdWithResultsAsync);
             });
 
             app.MapPut("/levels/{id:int}", async (int id, UpdateLevelDto dto, ILevelRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var existingLevel = await repository.GetByIdAsync(id);
@@ -54,15 +50,11 @@ namespace MicroservicioFiguras.Endpoints
                 existingLevel.Difficulty = dto.Difficulty;
 
                 await repository.UpdateAsync(existingLevel);
-                var updatedLevel = await repository.GetByIdWithResultsAsync(id);
-                return updatedLevel is not null ? Results.Ok(updatedLevel) : Results.BadRequest();
+                return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithResultsAsync);
             });
 
             app.MapDelete("/levels/{id:int}", async (int id, ILevelRepository repository) =>
-            {
-                var deleted = await repository.DeleteAsync(id);
-                return deleted ? Results.Ok() : Results.NotFound();
-            });
+                EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id)));
         }
     }
 }

@@ -26,6 +26,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
             .Select(t => new TutorDto
             {
                 IdTutor = t.IdTutor,
+                Name = t.Name,
                 Email = t.Email,
                 Country = t.Country,
                 RegistrationDate = t.RegistrationDate,
@@ -33,6 +34,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 {
                     IdStudent = s.IdStudent,
                     IdTutor = s.IdTutor,
+                    Name = s.Name,
                     Age = s.Age,
                     Genre = s.Genre,
                     Country = s.Country
@@ -50,6 +52,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
             .Select(t => new TutorDto
             {
                 IdTutor = t.IdTutor,
+                Name = t.Name,
                 Email = t.Email,
                 Country = t.Country,
                 RegistrationDate = t.RegistrationDate,
@@ -57,6 +60,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 {
                     IdStudent = s.IdStudent,
                     IdTutor = s.IdTutor,
+                    Name = s.Name,
                     Age = s.Age,
                     Genre = s.Genre,
                     Country = s.Country

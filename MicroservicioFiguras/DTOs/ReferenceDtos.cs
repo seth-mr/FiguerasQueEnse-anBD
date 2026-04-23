@@ -4,6 +4,7 @@ public class StudentBasicDto
 {
     public int IdStudent { get; set; }
     public int? IdTutor { get; set; }
+    public string? Name { get; set; }
     public int Age { get; set; }
     public char Genre { get; set; }
     public string? Country { get; set; }
@@ -12,6 +13,7 @@ public class StudentBasicDto
 public class TutorBasicDto
 {
     public int IdTutor { get; set; }
+    public string? Name { get; set; }
     public string Email { get; set; } = null!;
 }
 

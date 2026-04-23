@@ -14,10 +14,7 @@ namespace MicroservicioFiguras.Endpoints
                 Results.Ok(await repository.GetAllWithRelationsAsync()));
 
             app.MapGet("/level-results/{id:int}", async (int id, ILevelResultRepository repository) =>
-            {
-                var result = await repository.GetByIdWithRelationsAsync(id);
-                return result is not null ? Results.Ok(result) : Results.NotFound();
-            });
+                await EndpointResponseHelper.GetByIdAsync(id, repository.GetByIdWithRelationsAsync));
 
             app.MapGet("/sessions/{sessionId:int}/level-results/ids", async (int sessionId, ILevelResultRepository repository) =>
             {
@@ -27,9 +24,9 @@ namespace MicroservicioFiguras.Endpoints
 
             app.MapPost("/level-results", async (CreateLevelResultDto dto, ILevelResultRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var levelResult = new LevelResult
@@ -43,15 +40,14 @@ namespace MicroservicioFiguras.Endpoints
                 };
 
                 var created = await repository.AddAsync(levelResult);
-                var createdDto = await repository.GetByIdWithRelationsAsync(created.IdResult);
-                return createdDto is not null ? Results.Created($"/level-results/{createdDto.IdResult}", createdDto) : Results.BadRequest();
+                return await EndpointResponseHelper.CreateWithDetailsAsync(created.IdResult, "level-results", repository.GetByIdWithRelationsAsync);
             });
 
             app.MapPut("/level-results/{id:int}", async (int id, UpdateLevelResultDto dto, ILevelResultRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var existingResult = await repository.GetByIdAsync(id);
@@ -68,15 +64,11 @@ namespace MicroservicioFiguras.Endpoints
                 existingResult.Completed = dto.Completed;
 
                 await repository.UpdateAsync(existingResult);
-                var updatedResult = await repository.GetByIdWithRelationsAsync(id);
-                return updatedResult is not null ? Results.Ok(updatedResult) : Results.BadRequest();
+                return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithRelationsAsync);
             });
 
             app.MapDelete("/level-results/{id:int}", async (int id, ILevelResultRepository repository) =>
-            {
-                var deleted = await repository.DeleteAsync(id);
-                return deleted ? Results.Ok() : Results.NotFound();
-            });
+                EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id)));
         }
     }
 }

@@ -246,3 +246,11 @@ C:\FiguerasQueEnse-anBD\MicroservicioFiguras\obj\Debug\net10.0\refint\Microservi
 C:\FiguerasQueEnse-anBD\MicroservicioFiguras\obj\Debug\net10.0\MicroservicioFiguras.pdb
 C:\FiguerasQueEnse-anBD\MicroservicioFiguras\obj\Debug\net10.0\MicroservicioFiguras.genruntimeconfig.cache
 C:\FiguerasQueEnse-anBD\MicroservicioFiguras\obj\Debug\net10.0\ref\MicroservicioFiguras.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.Abstractions.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\FiguerasQueEnse-anBD\MicroservicioFiguras\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll

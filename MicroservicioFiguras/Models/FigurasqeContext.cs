@@ -123,6 +123,9 @@ public partial class FigurasqeContext : DbContext
                 .HasMaxLength(1)
                 .HasColumnName("genre");
             entity.Property(e => e.IdTutor).HasColumnName("id_tutor");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
             entity.Property(e => e.Neurodivergency)
                 .HasMaxLength(50)
                 .HasColumnName("neurodivergency");
@@ -155,6 +158,9 @@ public partial class FigurasqeContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(255)
                 .HasColumnName("password_hash");

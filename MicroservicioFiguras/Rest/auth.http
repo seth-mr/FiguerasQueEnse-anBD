@@ -1,0 +1,70 @@
+@authHost = http://localhost:5041
+@figuresHost = http://localhost:5124
+
+### 1. Registrar tutor (solo la primera vez)
+POST {{authHost}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Carlos Ramirez",
+  "email": "carlos.tutor@example.com",
+  "password": "TutorPass123",
+  "role": "tutor",
+  "country": "CO",
+  "neurodivergency": "None",
+  "age": 0,
+  "genre": "M"
+}
+
+###
+
+### 2. Registrar estudiante (solo la primera vez)
+POST {{authHost}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ana Lopez",
+  "email": "ana.student@example.com",
+  "password": "StudentPass123",
+  "role": "student",
+  "country": "CO",
+  "neurodivergency": "None",
+  "age": 10,
+  "genre": "F"
+}
+
+###
+
+### 3. Login tutor
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos.tutor@example.com",
+  "password": "TutorPass123"
+}
+
+###
+
+### 4. Login estudiante
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "ana.student@example.com",
+  "password": "StudentPass123"
+}
+
+###
+
+### 5. Asignar tutor al estudiante (requiere token de tutor)
+@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTgxMTYsImV4cCI6MTc3NjkyMTcxNn0.6tc7m-EWIyT4cqHxjdSQjy_LEGh1iV-th6mORTOlNWA
+POST {{figuresHost}}/tutors/assign-student
+Authorization: Bearer {{tutorToken}}
+Content-Type: application/json
+
+{
+  "studentEmail": "ana.student@example.com",
+  "tutorEmail": "carlos.tutor@example.com"
+}
+

@@ -8,6 +8,9 @@ public class TutorDto
 {
     public int IdTutor { get; set; }
 
+    [StringLength(120, ErrorMessage = "Name must be 120 characters or fewer.")]
+    public string? Name { get; set; }
+
     [EmailAddress]
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string Email { get; set; } = null!;
@@ -21,6 +24,10 @@ public class TutorDto
 
 public class CreateTutorDto
 {
+    [Required]
+    [StringLength(120, MinimumLength = 1, ErrorMessage = "Name must be between 1 and 120 characters.")]
+    public string Name { get; set; } = null!;
+
     [Required]
     [EmailAddress]
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
@@ -36,6 +43,10 @@ public class CreateTutorDto
 
 public class UpdateTutorDto
 {
+    [Required]
+    [StringLength(120, MinimumLength = 1, ErrorMessage = "Name must be between 1 and 120 characters.")]
+    public string Name { get; set; } = null!;
+
     [Required]
     [EmailAddress]
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]

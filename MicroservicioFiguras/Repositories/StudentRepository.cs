@@ -27,6 +27,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
             {
                 IdStudent = s.IdStudent,
                 IdTutor = s.IdTutor,
+                Name = s.Name,
                 Email = s.Email,
                 Age = s.Age,
                 Genre = s.Genre,
@@ -38,6 +39,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                     : new TutorDto
                     {
                         IdTutor = s.IdTutorNavigation.IdTutor,
+                        Name = s.IdTutorNavigation.Name,
                         Email = s.IdTutorNavigation.Email,
                         Country = s.IdTutorNavigation.Country
                     }
@@ -74,6 +76,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
             {
                 IdStudent = s.IdStudent,
                 IdTutor = s.IdTutor,
+                Name = s.Name,
                 Email = s.Email,
                 Age = s.Age,
                 Genre = s.Genre,
@@ -85,6 +88,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                     : new TutorDto
                     {
                         IdTutor = s.IdTutorNavigation.IdTutor,
+                        Name = s.IdTutorNavigation.Name,
                         Email = s.IdTutorNavigation.Email,
                         Country = s.IdTutorNavigation.Country
                     }
@@ -135,6 +139,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
         {
             IdStudent = student.IdStudent,
             IdTutor = student.IdTutor,
+            Name = student.Name,
             Email = student.Email,
             Age = student.Age,
             Genre = student.Genre,
@@ -146,6 +151,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                 : new TutorDto
                 {
                     IdTutor = student.IdTutorNavigation.IdTutor,
+                    Name = student.IdTutorNavigation.Name,
                     Email = student.IdTutorNavigation.Email,
                     Country = student.IdTutorNavigation.Country
                 }

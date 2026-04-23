@@ -14,16 +14,13 @@ namespace MicroservicioFiguras.Endpoints
                 Results.Ok(await repository.GetAllWithRelationsAsync()));
 
             app.MapGet("/sessions/{id:int}", async (int id, ISessionRepository repository) =>
-            {
-                var session = await repository.GetByIdWithRelationsAsync(id);
-                return session is not null ? Results.Ok(session) : Results.NotFound();
-            });
+                await EndpointResponseHelper.GetByIdAsync(id, repository.GetByIdWithRelationsAsync));
 
             app.MapPost("/sessions", async (CreateSessionDto dto, ISessionRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var session = new Session
@@ -35,15 +32,14 @@ namespace MicroservicioFiguras.Endpoints
                 };
 
                 var created = await repository.AddAsync(session);
-                var createdDto = await repository.GetByIdWithRelationsAsync(created.IdSession);
-                return createdDto is not null ? Results.Created($"/sessions/{createdDto.IdSession}", createdDto) : Results.BadRequest();
+                return await EndpointResponseHelper.CreateWithDetailsAsync(created.IdSession, "sessions", repository.GetByIdWithRelationsAsync);
             });
 
             app.MapPut("/sessions/{id:int}", async (int id, UpdateSessionDto dto, ISessionRepository repository) =>
             {
-                if (!DtoValidationHelper.TryValidate(dto, out var errors))
+                if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
-                    return Results.BadRequest(new { errors });
+                    return validationError;
                 }
 
                 var existingSession = await repository.GetByIdAsync(id);
@@ -58,15 +54,11 @@ namespace MicroservicioFiguras.Endpoints
                 existingSession.Device = dto.Device;
 
                 await repository.UpdateAsync(existingSession);
-                var updatedSession = await repository.GetByIdWithRelationsAsync(id);
-                return updatedSession is not null ? Results.Ok(updatedSession) : Results.BadRequest();
+                return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithRelationsAsync);
             });
 
             app.MapDelete("/sessions/{id:int}", async (int id, ISessionRepository repository) =>
-            {
-                var deleted = await repository.DeleteAsync(id);
-                return deleted ? Results.Ok() : Results.NotFound();
-            });
+                EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id)));
         }
     }
 }

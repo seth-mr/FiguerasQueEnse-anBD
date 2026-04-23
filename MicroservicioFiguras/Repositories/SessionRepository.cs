@@ -35,6 +35,7 @@ public class SessionRepository : Repository<Session>, ISessionRepository
                 {
                     IdStudent = s.IdStudentNavigation.IdStudent,
                     IdTutor = s.IdStudentNavigation.IdTutor,
+                    Name = s.IdStudentNavigation.Name,
                     Age = s.IdStudentNavigation.Age,
                     Genre = s.IdStudentNavigation.Genre,
                     Country = s.IdStudentNavigation.Country
@@ -68,6 +69,7 @@ public class SessionRepository : Repository<Session>, ISessionRepository
                 {
                     IdStudent = s.IdStudentNavigation.IdStudent,
                     IdTutor = s.IdStudentNavigation.IdTutor,
+                    Name = s.IdStudentNavigation.Name,
                     Age = s.IdStudentNavigation.Age,
                     Genre = s.IdStudentNavigation.Genre,
                     Country = s.IdStudentNavigation.Country
