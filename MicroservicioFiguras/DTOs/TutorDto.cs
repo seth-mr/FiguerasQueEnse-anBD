@@ -18,6 +18,12 @@ public class TutorDto
     [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
 
+    public string? Gender { get; set; }
+
+    public int? Age { get; set; }
+
+    public string? Grade { get; set; }
+
     public DateTime? RegistrationDate { get; set; }
     public List<StudentBasicDto>? Students { get; set; }
 }
@@ -39,6 +45,16 @@ public class CreateTutorDto
 
     [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
+
+    [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
+    public string? Gender { get; set; }
+
+    [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
+    public int? Age { get; set; }
+
+    [RegularExpression("^(licenciatura|Maestria|Doctorado|Post Doctorado|Padre o Madre)$",
+        ErrorMessage = "Grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
+    public string? Grade { get; set; }
 }
 
 public class UpdateTutorDto
@@ -54,4 +70,14 @@ public class UpdateTutorDto
 
     [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
     public string? Country { get; set; }
+
+    [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
+    public string? Gender { get; set; }
+
+    [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
+    public int? Age { get; set; }
+
+    [RegularExpression("^(licenciatura|Maestria|Doctorado|Post Doctorado|Padre o Madre)$",
+        ErrorMessage = "Grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
+    public string? Grade { get; set; }
 }

@@ -26,7 +26,10 @@ Content-Type: application/json
   "name": "Carlos Ramirez",
   "email": "carlos.tutor@example.com",
   "passwordHash": "TutorPass123",
-  "country": "CO"
+  "country": "CO",
+  "gender": "Masculino",
+  "age": 35,
+  "grade": "Maestria"
 }
 
 ### Actualizar tutor
@@ -37,7 +40,10 @@ Content-Type: application/json
 {
   "name": "Carlos Ramirez Actualizado",
   "email": "carlos.tutor@example.com",
-  "country": "CO"
+  "country": "CO",
+  "gender": "Masculino",
+  "age": 36,
+  "grade": "Doctorado"
 }
 
 ### Asignar tutor a estudiante por email

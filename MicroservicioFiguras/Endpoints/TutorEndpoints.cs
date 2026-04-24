@@ -36,7 +36,10 @@ namespace MicroservicioFiguras.Endpoints
                     Name = dto.Name,
                     Email = dto.Email,
                     PasswordHash = dto.PasswordHash,
-                    Country = dto.Country
+                    Country = dto.Country,
+                    Gender = dto.Gender,
+                    Age = dto.Age,
+                    Grade = dto.Grade
                 };
 
                 var created = await repository.AddAsync(tutor);
@@ -70,6 +73,9 @@ namespace MicroservicioFiguras.Endpoints
                 existingTutor.Email = dto.Email;
                 existingTutor.Name = dto.Name;
                 existingTutor.Country = dto.Country;
+                existingTutor.Gender = dto.Gender;
+                existingTutor.Age = dto.Age;
+                existingTutor.Grade = dto.Grade;
 
                 await repository.UpdateAsync(existingTutor);
                 return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithStudentsAsync);

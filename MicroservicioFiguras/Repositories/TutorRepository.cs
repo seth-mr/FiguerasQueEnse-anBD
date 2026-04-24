@@ -29,6 +29,9 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 Name = t.Name,
                 Email = t.Email,
                 Country = t.Country,
+                Gender = t.Gender,
+                Age = t.Age,
+                Grade = t.Grade,
                 RegistrationDate = t.RegistrationDate,
                 Students = t.Students.Select(s => new StudentBasicDto
                 {
@@ -55,6 +58,9 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 Name = t.Name,
                 Email = t.Email,
                 Country = t.Country,
+                Gender = t.Gender,
+                Age = t.Age,
+                Grade = t.Grade,
                 RegistrationDate = t.RegistrationDate,
                 Students = t.Students.Select(s => new StudentBasicDto
                 {

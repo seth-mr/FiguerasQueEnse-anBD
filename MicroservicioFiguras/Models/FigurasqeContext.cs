@@ -164,6 +164,14 @@ public partial class FigurasqeContext : DbContext
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(255)
                 .HasColumnName("password_hash");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(20)
+                .HasColumnName("gender");
+            entity.Property(e => e.Age)
+                .HasColumnName("age");
+            entity.Property(e => e.Grade)
+                .HasMaxLength(20)
+                .HasColumnName("grade");
             entity.Property(e => e.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")

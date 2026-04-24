@@ -15,6 +15,12 @@ public partial class Tutor
 
     public string? Country { get; set; }
 
+    public string? Gender { get; set; }
+
+    public int? Age { get; set; }
+
+    public string? Grade { get; set; }
+
     public DateTime? RegistrationDate { get; set; }
 
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();

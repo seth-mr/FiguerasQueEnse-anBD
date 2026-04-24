@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {}
+    "C:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {}
   },
   "projects": {
-    "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {
+    "C:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+        "projectUniqueName": "C:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
         "projectName": "MicroservicioFiguras",
-        "projectPath": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
+        "projectPath": "C:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\MicroservicioFiguras.csproj",
         "packagesPath": "C:\\Users\\seth\\.nuget\\packages\\",
-        "outputPath": "c:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\obj\\",
+        "outputPath": "C:\\FiguerasQueEnse-anBD\\MicroservicioFiguras\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\seth\\AppData\\Roaming\\NuGet\\NuGet.Config",
