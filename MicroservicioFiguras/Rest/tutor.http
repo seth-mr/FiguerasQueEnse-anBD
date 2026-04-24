@@ -1,6 +1,6 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiZW1haWwiOiJjYXJsb3MudHV1anRvckBleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzAwMTEwNywiZXhwIjoxNzc3MDA0NzA3fQ.NswiBIVkLofoBs577SNwT94bPotUFqdlh_FpsRU9_I0
-@tutorId = 1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiZW1haWwiOiJzZXRob0BleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzAwNzY3MywiZXhwIjoxNzc3MDExMjczfQ.cMjhyFEiONto8YX4PaKS0njynMzKgO8ghJhDUPYQlCY
+@tutorId = 8
 
 ### Obtener todos los tutores
 GET {{host}}/tutors
@@ -13,8 +13,7 @@ Authorization: Bearer {{token}}
 Accept: application/json
 
 ### Obtener estudiantes asignados a un tutor
-GET {{host}}/tutors/{{tutorId}}/students  
-
+GET {{host}}/tutors/{{tutorId}}/students
 Authorization: Bearer {{token}}
 Accept: application/json
 
@@ -54,7 +53,7 @@ Content-Type: application/json
 
 {
   "studentEmail": "ana.student@example.com",
-  "tutorEmail": "carlos.tutor@example.com"
+  "tutorEmail": "setho@example.com"
 }
 
 ### Eliminar tutor

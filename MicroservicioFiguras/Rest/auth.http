@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
   "name": "Carlos Ramirez",
-  "email": "seth@example.com",
+  "email": "setho@example.com",
   "password": "TutorPass123!",
   "role": "tutor",
   "country": "CO",
@@ -41,7 +41,7 @@ POST {{authHost}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "carlos.tutor@example.com",
+  "email": "seth@example.com",
   "password": "TutorPass123"
 }
 
