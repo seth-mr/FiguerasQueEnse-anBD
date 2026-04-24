@@ -7,12 +7,13 @@ Content-Type: application/json
 
 {
   "name": "Carlos Ramirez",
-  "email": "carlos.tutor@example.com",
-  "password": "TutorPass123",
+  "email": "seth@example.com",
+  "password": "TutorPass123!",
   "role": "tutor",
   "country": "CO",
+  "grade": "Padre o Madre",
   "neurodivergency": "None",
-  "age": 0,
+  "age": 30,
   "genre": "M"
 }
 
@@ -24,8 +25,8 @@ Content-Type: application/json
 
 {
   "name": "Ana Lopez",
-  "email": "ana.student@example.com",
-  "password": "StudentPass123",
+  "email": "gabo@example.com",
+  "password": "StudentPass123@",
   "role": "student",
   "country": "CO",
   "neurodivergency": "None",

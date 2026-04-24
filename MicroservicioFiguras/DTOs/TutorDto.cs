@@ -15,8 +15,9 @@ public class TutorDto
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string Email { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
-    public string? Country { get; set; }
+    [Required(ErrorMessage = "Country is required")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
+    public string Country { get; set; } = string.Empty;
 
     public string? Gender { get; set; }
 
@@ -43,8 +44,9 @@ public class CreateTutorDto
     [StringLength(255, MinimumLength = 8, ErrorMessage = "PasswordHash must be between 8 and 255 characters.")]
     public string PasswordHash { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
-    public string? Country { get; set; }
+    [Required(ErrorMessage = "Country is required")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
+    public string Country { get; set; } = string.Empty;
 
     [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
     public string? Gender { get; set; }
@@ -64,12 +66,12 @@ public class UpdateTutorDto
     public string Name { get; set; } = null!;
 
     [Required]
-    [EmailAddress]
-    [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
+    [EmailAddress(ErrorMessage = "Email must be a valid address.")]
     public string Email { get; set; } = null!;
 
-    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
-    public string? Country { get; set; }
+    [Required(ErrorMessage = "Country is required")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
+    public string Country { get; set; } = string.Empty;
 
     [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
     public string? Gender { get; set; }
@@ -77,7 +79,7 @@ public class UpdateTutorDto
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
     public int? Age { get; set; }
 
-    [RegularExpression("^(licenciatura|Maestria|Doctorado|Post Doctorado|Padre o Madre)$",
-        ErrorMessage = "Grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
+    [RegularExpression("^(licenciatura|maestria|doctorado|post doctorado|padre o madre|otro)$",
+        ErrorMessage = "grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre, Otro.")]
     public string? Grade { get; set; }
 }

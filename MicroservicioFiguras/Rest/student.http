@@ -1,7 +1,7 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTc2MzUsImV4cCI6MTc3NjkyMTIzNX0.t5agNcp9bfHEE8-xHcnadW-26V8rwJi9Ab23MFXjuBs
-@studentId = 1
-@tutorId = 1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiZW1haWwiOiJnYWJvQGV4YW1wbGUuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzcwMDIxNDQsImV4cCI6MTc3NzAwNTc0NH0.njbkCb_YwEHgmJKOrBv4nSXRDMiialySZaOpO-O_CmE
+@studentId = 5
+@tutorId = 
 
 ### Obtener estudiantes (depende del rol del token)
 GET {{host}}/students

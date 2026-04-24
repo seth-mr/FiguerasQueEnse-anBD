@@ -26,8 +26,9 @@ public class CreateStudentDto
     [RegularExpression(@"^[MF]$", ErrorMessage = "Genre must be 'M' or 'F'.")]
     public char Genre { get; set; }
 
-    [RegularExpression(@"^[A-Z]{2}$", ErrorMessage = "Country must be a 2-letter uppercase code.")]
-    public string? Country { get; set; }
+    [Required(ErrorMessage = "Country is required")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
+    public string Country { get; set; } = string.Empty;
 
     [StringLength(50, ErrorMessage = "Neurodivergency must be 50 characters or fewer.")]
     [RegularExpression(@"^[\p{L}0-9\s\-_]*$", ErrorMessage = "Neurodivergency may contain letters, numbers, spaces, hyphens and underscores.")]
