@@ -6,7 +6,7 @@ Scope: applies to the entire workspace.
 
 - `FigurasQE-AuthenticationService/`: authentication API (controller-based), JWT issuance, user registration/login.
 - `MicroservicioFiguras/`: domain API (minimal endpoints), repositories, DTO validation, JWT authorization.
-- `FigurasQE-Frontend/`: Razor Pages web client (`net10.0`) — login, signup, and student views. Calls the gateway, not backend services directly.
+- `FigurasQE-Frontend/`: Razor Pages web client (`net10.0`) — login, signup, and student views. Calls the gateway, not backend services directly. **Note: this folder is not present in the current workspace clone.**
 - `FigurasQE-Gateway/`: Express 5 API gateway (Node.js). Routes `/auth/*` to the auth service and `/data/*` to the domain service. Config via `.env` (`AUTH_SERVICE`, `DATA_SERVICE` URLs).
 - Both backend services connect to PostgreSQL and are developed/run independently.
 
@@ -46,6 +46,7 @@ Scope: applies to the entire workspace.
   - Endpoint modules: `MicroservicioFiguras/Endpoints/*.cs`
 - Frontend calls only the gateway (`http://localhost:3000`), never backend services directly.
 - Gateway routes: `/auth/*` → auth service, `/data/*` → domain service (URLs from env vars).
+- Gateway route modules: `FigurasQE-Gateway/src/routes/auth.js` (login + register proxy) and `FigurasQE-Gateway/src/routes/data.js` (student list/detail proxy).
 
 ## Coding Conventions In This Repo
 
@@ -80,13 +81,13 @@ Scope: applies to the entire workspace.
 - `MicroservicioFiguras/Repositories/Repository.cs`
 - `MicroservicioFiguras/Helpers/GlobalExceptionHandler.cs`
 - `FigurasQE-Frontend/Program.cs`
-- `FigurasQE-Frontend/Pages/User/Login.cshtml` / `Login.chstml.cs` (note: `.cs` filename has typo — `.chstml` not `.cshtml`; pages live under `Pages/User/`)
 - `FigurasQE-Gateway/src/server.js`
-- `FigurasQE-Gateway/src/routes/` (`auth.js` — login+register proxy; `students.js` — student list proxy)
+- `FigurasQE-Gateway/src/routes/auth.js` — login+register proxy
+- `FigurasQE-Gateway/src/routes/data.js` — student list/detail proxy
 
 ## Known Gaps / WIP Areas
 
-- Gateway `students.js` route does not forward the `Authorization` header — JWTs won't reach the domain service.
+- Gateway `data.js` `/students/:id` route does not forward the `Authorization` header — JWT won't reach the domain service for that route.
 - Frontend has no JWT storage or session middleware wired up; token is read and role-checked in `Login.chstml.cs` but never persisted to a cookie or session.
 - Gateway URL is hardcoded in `FigurasQE-Frontend/Pages/User/Login.chstml.cs` and `Signup.cshtml.cs`; should move to `appsettings.json`.
 - `Login.chstml.cs` calls `ReadAsStringAsync()` twice on the same response stream — second call returns empty; also missing `ModelState.IsValid` check.
