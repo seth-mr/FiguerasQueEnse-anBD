@@ -1,6 +1,6 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiZW1haWwiOiJzZXRob0BleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzAwNzY3MywiZXhwIjoxNzc3MDExMjczfQ.cMjhyFEiONto8YX4PaKS0njynMzKgO8ghJhDUPYQlCY
-@tutorId = 8
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5IiwiZW1haWwiOiJzZXRoYXNhc2Fzb0BleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzA2NzUzMywiZXhwIjoxNzc3MDcxMTMzfQ.bx4Ap-52Aawd56bctX4PUepafvSHG6dHZamMWdqwalk
+@tutorId = 9
 
 ### Obtener todos los tutores
 GET {{host}}/tutors
@@ -32,19 +32,24 @@ Content-Type: application/json
   "grade": "Maestria"
 }
 
+
+
 ### Actualizar tutor
 PUT {{host}}/tutors/{{tutorId}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "Carlos Ramirez Actualizado",
-  "email": "carlos.tutorrrrrrrrr@example.com",
-  "country": "CO",
+  "name": " Actualizado nuevamente",
+  "email": "sethasasaso@example.com",
+  "role": "tutor",
+  "country": "CORP",
   "gender": "Masculino",
-  "age": 36,
-  "grade": "Doctorado"
+  "age": 19,
+  "grade": "licenciatura"
 }
+
+### Eliminar tutor
 
 ### Asignar tutor a estudiante por email
 POST {{host}}/tutors/assign-student
@@ -53,7 +58,7 @@ Content-Type: application/json
 
 {
   "studentEmail": "ana.student@example.com",
-  "tutorEmail": "setho@example.com"
+  "tutorEmail": "sethasasaso@example.com"
 }
 
 ### Eliminar tutor
