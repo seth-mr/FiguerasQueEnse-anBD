@@ -79,7 +79,7 @@ public class UpdateTutorDto
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
     public int? Age { get; set; }
 
-    [RegularExpression("^(licenciatura|maestria|doctorado|post doctorado|padre o madre|otro)$",
-        ErrorMessage = "grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre, Otro.")]
+    [RegularExpression("^(licenciatura|Maestria|Doctorado|Post Doctorado|Padre o Madre)$",
+        ErrorMessage = "Grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
     public string? Grade { get; set; }
 }

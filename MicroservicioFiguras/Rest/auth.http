@@ -1,71 +1,101 @@
 @authHost = http://localhost:5041
 @figuresHost = http://localhost:5124
 
-### 1. Registrar tutor (solo la primera vez)
+### ==================================================
+### AUTH FLOW OFICIAL
+### 1) Hacer login aqui
+### 2) Copiar token de respuesta
+### 3) Pegar tokens en los demas .http de Rest
+### ==================================================
+
+### Login tutor 47 (Juan)
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "juan.garcia@mail.com",
+  "password": "securepass123"
+}
+
+###
+
+### Login tutor 48 (Maria)
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "maria.lopez@mail.com",
+  "password": "securepass456"
+}
+
+###
+
+### Login student 17 (Luis)
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "luis.martinez@mail.com",
+  "password": "student123456"
+}
+
+###
+
+### Login student 19 (Pablo)
+POST {{authHost}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "pablo.rodriguez@mail.com",
+  "password": "student345678"
+}
+
+###
+
+### Registro tutor (siempre por Auth Service)
+### Nota: Degree (no Grade). Role: tutor
 POST {{authHost}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Carlos Ramirez",
-  "email": "android@example.com",
-  "password": "TutorPass123!",
+  "name": "Tutor Demo",
+  "email": "tutor.demo@mail.com",
+  "password": "TutorDemo123!",
+  "age": 40,
+  "genre": "M",
+  "country": "MX",
   "role": "tutor",
-  "country": "CO",
-  "grade": "Padre o Madre",
-  "neurodivergency": "None",
-  "age": 30,
-  "genre": "M"
+  "degree": "maestria"
 }
 
 ###
 
-### 2. Registrar estudiante (solo la primera vez)
+### Registro estudiante (siempre por Auth Service)
+### Nota: si luego quieres asignarlo, usa /tutors/assign-student con JWT de tutor
 POST {{authHost}}/auth/register
 Content-Type: application/json
 
 {
-  "name": "Ana Lopez",
-  "email": "gabo@example.com",
-  "password": "StudentPass123@",
+  "name": "Student Demo",
+  "email": "student.demo@mail.com",
+  "password": "StudentDemo123!",
+  "age": 14,
+  "genre": "F",
+  "country": "MX",
   "role": "student",
-  "country": "CO",
-  "neurodivergency": "None",
-  "age": 10,
-  "genre": "F"
+  "neurodivergency": "ADHD"
 }
 
 ###
 
-### 3. Login tutor
-POST {{authHost}}/auth/login
-Content-Type: application/json
-
-{
-  "email": "android@example.com",
-  "password": "TutorPass123!"
-}
-
-###
-
-### 4. Login estudiante
-POST {{authHost}}/auth/login
-Content-Type: application/json
-
-{
-  "email": "ana.student@example.com",
-  "password": "StudentPass123"
-}
-
-###
-
-### 5. Asignar tutor al estudiante (requiere token de tutor)
-@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTgxMTYsImV4cCI6MTc3NjkyMTcxNn0.6tc7m-EWIyT4cqHxjdSQjy_LEGh1iV-th6mORTOlNWA
+### Asignar estudiante a tutor (requiere JWT de ese tutor)
+@tutor47Token = <PEGAR_TOKEN_TUTOR_47>
 POST {{figuresHost}}/tutors/assign-student
-Authorization: Bearer {{tutorToken}}
+Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "studentEmail": "ana.student@example.com",
-  "tutorEmail": "carlos.tutor@example.com"
+  "studentEmail": "student.demo@mail.com",
+  "tutorEmail": "juan.garcia@mail.com"
 }
 

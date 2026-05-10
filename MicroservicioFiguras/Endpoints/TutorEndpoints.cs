@@ -85,8 +85,15 @@ namespace MicroservicioFiguras.Endpoints
                     return Results.Forbid();
                 }
 
-                var assigned = await repository.AssignTutorByEmailAsync(dto.StudentEmail, dto.TutorEmail);
-                return assigned ? Results.Ok() : Results.NotFound();
+                var result = await repository.AssignTutorByEmailAsync(dto.StudentEmail, dto.TutorEmail);
+                return result switch
+                {
+                    AssignTutorByEmailResult.Success => Results.Ok(),
+                    AssignTutorByEmailResult.StudentNotFound => Results.NotFound(new { message = "No existe un alumno con ese correo." }),
+                    AssignTutorByEmailResult.StudentEmailBelongsToTutor => Results.NotFound(new { message = "Ese correo pertenece a un tutor, no a un alumno." }),
+                    AssignTutorByEmailResult.TutorNotFound => Results.NotFound(new { message = "No existe un tutor con ese correo." }),
+                    _ => Results.BadRequest(new { message = "No se pudo asignar el alumno." })
+                };
             });
 
             app.MapPut("/tutors/{id:int}", async (HttpContext http, int id, UpdateTutorDto dto, ITutorRepository repository) =>

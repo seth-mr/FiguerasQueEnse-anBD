@@ -16,5 +16,5 @@ public interface IStudentRepository : IRepository<Student>
     Task<bool> IsEmailTakenAsync(string email);
     Task<bool> IsEmailTakenByOtherAsync(int id, string email);
     Task<bool> TutorExistsAsync(int tutorId);
-    Task<bool> AssignTutorByEmailAsync(string studentEmail, string tutorEmail);
+    Task<AssignTutorByEmailResult> AssignTutorByEmailAsync(string studentEmail, string tutorEmail);
 }
