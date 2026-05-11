@@ -16,14 +16,10 @@ public class UpdateStudentDto
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Email must be a valid address.")]
     public string? Email { get; set; }
 
-    [Required]
-    [StringLength(255, MinimumLength = 8, ErrorMessage = "PasswordHash must be between 8 and 255 characters.")]
-    public string? PasswordHash { get; set; }
-
     [Range(1, 120, ErrorMessage = "Age must be between 1 and 120.")]
     public int Age { get; set; }
 
-    [RegularExpression(@"^[MF]$", ErrorMessage = "Genre must be 'M' or 'F'.")]
+    [RegularExpression(@"^[MFO]$", ErrorMessage = "Genre must be 'M' or 'F'.")]
     public char Genre { get; set; }
 
     [Required(ErrorMessage = "Country is required")]

@@ -100,7 +100,6 @@ namespace MicroservicioFiguras.Endpoints
                 existingStudent.IdTutor = dto.IdTutor;
                 existingStudent.Name = dto.Name;
                 existingStudent.Email = dto.Email;
-                existingStudent.PasswordHash = dto.PasswordHash;
                 existingStudent.Age = dto.Age;
                 existingStudent.Genre = dto.Genre;
                 existingStudent.Country = dto.Country;

@@ -41,8 +41,8 @@ POST {{authHost}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "carlos.tutor@example.com",
-  "password": "TutorPass123"
+  "email": "songoku@capsule.cc",
+  "password": "123456"
 }
 
 ###
@@ -59,13 +59,13 @@ Content-Type: application/json
 ###
 
 ### 5. Asignar tutor al estudiante (requiere token de tutor)
-@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJjYXJsb3MudHV0b3JAZXhhbXBsZS5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzY5MTgxMTYsImV4cCI6MTc3NjkyMTcxNn0.6tc7m-EWIyT4cqHxjdSQjy_LEGh1iV-th6mORTOlNWA
+@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiZW1haWwiOiJzZXRoQGV4YW1wbGUuY29tIiwicm9sZSI6InR1dG9yIiwiaXNzIjoiZmlndXJhc3FlLWF1dGgiLCJhdWQiOiJmaWd1cmFzcWUtY2xpZW50IiwiaWF0IjoxNzc3MDA1MDc4LCJleHAiOjE3NzcwMDg2Nzh9.h_-2nNFJhHZPmfwXvUFMNG4oFM-iqpf73PHJb8IFHjQ
 POST {{figuresHost}}/tutors/assign-student
 Authorization: Bearer {{tutorToken}}
 Content-Type: application/json
 
 {
-  "studentEmail": "ana.student@example.com",
-  "tutorEmail": "carlos.tutor@example.com"
+  "studentEmail": "songohan@capsule.cc",
+  "tutorEmail": "songoku@capsule.cc"
 }
 

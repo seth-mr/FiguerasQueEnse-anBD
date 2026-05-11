@@ -1,8 +1,7 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0IiwiZW1haWwiOiJjYXJsb3MudHV1anRvckBleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzAwMTEwNywiZXhwIjoxNzc3MDA0NzA3fQ.NswiBIVkLofoBs577SNwT94bPotUFqdlh_FpsRU9_I0
-@tutorId = 1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiZW1haWwiOiJzb25nb2t1QGNhcHN1bGUuY2MiLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzcwMDU2NzYsImV4cCI6MTc3NzAwOTI3Nn0.zyY7tzLbaJbqMTnd_AB-FKadrB6kn-aUGD8GqSRXM8Y
+@tutorId = 7
 
-### Obtener todos los tutores
 GET {{host}}/tutors
 Authorization: Bearer {{token}}
 Accept: application/json

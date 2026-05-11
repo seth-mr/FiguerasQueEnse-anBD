@@ -48,7 +48,7 @@ public class CreateTutorDto
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
     public string Country { get; set; } = string.Empty;
 
-    [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
+    [RegularExpression(@"^[MFO]$", ErrorMessage = "Gender must be 'M', 'F' or 'O'.")]
     public string? Gender { get; set; }
 
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
@@ -73,7 +73,7 @@ public class UpdateTutorDto
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
     public string Country { get; set; } = string.Empty;
 
-    [RegularExpression(@"^(Masculino|Femenino|Otro)$", ErrorMessage = "Gender must be 'Masculino', 'Femenino', or 'Otro'.")]
+    [RegularExpression(@"^[MFO]$", ErrorMessage = "Gender must be 'M', 'F' or 'O'.")]
     public string? Gender { get; set; }
 
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
