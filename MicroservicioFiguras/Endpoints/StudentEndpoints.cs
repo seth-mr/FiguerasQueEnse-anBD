@@ -109,17 +109,39 @@ namespace MicroservicioFiguras.Endpoints
                 return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithTutorAsync);
             });
 
-            app.MapDelete("/students/{id:int}", async (int id, IStudentRepository repository) =>
-                EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id)));
-
-            app.MapGet("/students/tutor/{tutorId:int}/ids", async (int tutorId, IStudentRepository repository) =>
+            app.MapDelete("/students/{id:int}", async (HttpContext http, int id, IStudentRepository repository) =>
             {
+                var authorizationFailure = await ValidateStudentAccessAsync(http, repository, id);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
+                }
+
+                return EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id));
+            });
+
+            app.MapGet("/students/tutor/{tutorId:int}/ids", async (HttpContext http, int tutorId, IStudentRepository repository) =>
+            {
+                var userId = http.User.GetUserId();
+                var role = http.User.GetUserRole();
+
+                if (role != "tutor" || !userId.HasValue || userId.Value != tutorId)
+                {
+                    return Results.Forbid();
+                }
+
                 var studentIds = await repository.GetStudentIdsByTutorAsync(tutorId);
                 return Results.Ok(studentIds);
             });
 
-            app.MapGet("/students/{studentId:int}/sessions/ids", async (int studentId, IStudentRepository repository) =>
+            app.MapGet("/students/{studentId:int}/sessions/ids", async (HttpContext http, int studentId, IStudentRepository repository) =>
             {
+                var authorizationFailure = await ValidateStudentAccessAsync(http, repository, studentId);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
+                }
+
                 var sessionIds = await repository.GetSessionIdsByStudentAsync(studentId);
                 return Results.Ok(sessionIds);
             });

@@ -41,7 +41,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                         IdTutor = s.IdTutorNavigation.IdTutor,
                         Name = s.IdTutorNavigation.Name,
                         Email = s.IdTutorNavigation.Email,
-                        Country = s.IdTutorNavigation.Country
+                        Country = s.IdTutorNavigation.Country ?? string.Empty
                     }
             })
             .ToListAsync();
@@ -90,7 +90,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                         IdTutor = s.IdTutorNavigation.IdTutor,
                         Name = s.IdTutorNavigation.Name,
                         Email = s.IdTutorNavigation.Email,
-                        Country = s.IdTutorNavigation.Country
+                        Country = s.IdTutorNavigation.Country ?? string.Empty
                     }
             })
             .ToListAsync();
@@ -153,7 +153,7 @@ public class StudentRepository : Repository<Student>, IStudentRepository
                     IdTutor = student.IdTutorNavigation.IdTutor,
                     Name = student.IdTutorNavigation.Name,
                     Email = student.IdTutorNavigation.Email,
-                    Country = student.IdTutorNavigation.Country
+                    Country = student.IdTutorNavigation.Country ?? string.Empty
                 }
         };
     }

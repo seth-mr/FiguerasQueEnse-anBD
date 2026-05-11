@@ -10,14 +10,28 @@ namespace MicroservicioFiguras.Endpoints
     {
         public static void MapTutorEndpoints(this WebApplication app)
         {
-            app.MapGet("/tutors", async (ITutorRepository repository) =>
-                Results.Ok(await repository.GetAllWithStudentsAsync()));
+            app.MapGet("/tutors", async (HttpContext http, ITutorRepository repository) =>
+                await GetTutorForCurrentUserAsync(http, repository));
 
-            app.MapGet("/tutors/{id:int}", async (int id, ITutorRepository repository) =>
-                await EndpointResponseHelper.GetByIdAsync(id, repository.GetByIdWithStudentsAsync));
-
-            app.MapGet("/tutors/{id:int}/students", async (int id, IStudentRepository studentRepository, ITutorRepository tutorRepository) =>
+            app.MapGet("/tutors/{id:int}", async (HttpContext http, int id, ITutorRepository repository) =>
             {
+                var authorizationFailure = ValidateTutorSelfAccess(http, id);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
+                }
+
+                return await EndpointResponseHelper.GetByIdAsync(id, repository.GetByIdWithStudentsAsync);
+            });
+
+            app.MapGet("/tutors/{id:int}/students", async (HttpContext http, int id, IStudentRepository studentRepository, ITutorRepository tutorRepository) =>
+            {
+                var authorizationFailure = ValidateTutorSelfAccess(http, id);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
+                }
+
                 var tutor = await tutorRepository.GetByIdWithStudentsAsync(id);
                 if (tutor is null) return Results.NotFound();
                 var students = await studentRepository.GetStudentsByTutorIdAsync(id);
@@ -46,22 +60,46 @@ namespace MicroservicioFiguras.Endpoints
                 return await EndpointResponseHelper.CreateWithDetailsAsync(created.IdTutor, "tutors", repository.GetByIdWithStudentsAsync);
             });
 
-            app.MapPost("/tutors/assign-student", async (AssignTutorDto dto, IStudentRepository repository) =>
+            app.MapPost("/tutors/assign-student", async (HttpContext http, AssignTutorDto dto, IStudentRepository repository, ITutorRepository tutorRepository) =>
             {
                 if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
                     return validationError;
                 }
 
+                var userId = http.User.GetUserId();
+                var role = http.User.GetUserRole();
+                if (role != "tutor" || !userId.HasValue)
+                {
+                    return Results.Forbid();
+                }
+
+                var currentTutor = await tutorRepository.GetByIdAsync(userId.Value);
+                if (currentTutor is null)
+                {
+                    return Results.Forbid();
+                }
+
+                if (!string.Equals(currentTutor.Email, dto.TutorEmail, StringComparison.OrdinalIgnoreCase))
+                {
+                    return Results.Forbid();
+                }
+
                 var assigned = await repository.AssignTutorByEmailAsync(dto.StudentEmail, dto.TutorEmail);
                 return assigned ? Results.Ok() : Results.NotFound();
             });
 
-            app.MapPut("/tutors/{id:int}", async (int id, UpdateTutorDto dto, ITutorRepository repository) =>
+            app.MapPut("/tutors/{id:int}", async (HttpContext http, int id, UpdateTutorDto dto, ITutorRepository repository) =>
             {
                 if (!EndpointResponseHelper.TryValidateDto(dto, out var validationError))
                 {
                     return validationError;
+                }
+
+                var authorizationFailure = ValidateTutorSelfAccess(http, id);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
                 }
 
                 var existingTutor = await repository.GetByIdAsync(id);
@@ -81,8 +119,43 @@ namespace MicroservicioFiguras.Endpoints
                 return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithStudentsAsync);
             });
 
-            app.MapDelete("/tutors/{id:int}", async (int id, ITutorRepository repository) =>
-                EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id)));
+            app.MapDelete("/tutors/{id:int}", async (HttpContext http, int id, ITutorRepository repository) =>
+            {
+                var authorizationFailure = ValidateTutorSelfAccess(http, id);
+                if (authorizationFailure is not null)
+                {
+                    return authorizationFailure;
+                }
+
+                return EndpointResponseHelper.DeleteResult(await repository.DeleteAsync(id));
+            });
+        }
+
+        private static async Task<IResult> GetTutorForCurrentUserAsync(HttpContext http, ITutorRepository repository)
+        {
+            var userId = http.User.GetUserId();
+            var role = http.User.GetUserRole();
+
+            if (role != "tutor" || !userId.HasValue)
+            {
+                return Results.Forbid();
+            }
+
+            var tutor = await repository.GetByIdWithStudentsAsync(userId.Value);
+            return tutor is not null ? Results.Ok(new[] { tutor }) : Results.NotFound();
+        }
+
+        private static IResult? ValidateTutorSelfAccess(HttpContext http, int tutorId)
+        {
+            var userId = http.User.GetUserId();
+            var role = http.User.GetUserRole();
+
+            if (role != "tutor" || !userId.HasValue || userId.Value != tutorId)
+            {
+                return Results.Forbid();
+            }
+
+            return null;
         }
     }
 }
