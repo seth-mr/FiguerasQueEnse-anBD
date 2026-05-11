@@ -1,7 +1,7 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiZW1haWwiOiJnYWJvQGV4YW1wbGUuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzcwMDIxNDQsImV4cCI6MTc3NzAwNTc0NH0.njbkCb_YwEHgmJKOrBv4nSXRDMiialySZaOpO-O_CmE
-@studentId = 16
-@tutorId = 8
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzMyIsImVtYWlsIjoiZ2Fib0BleGFtcGxlLmNvbSIsInJvbGUiOiJzdHVkZW50IiwiaXNzIjoiZmlndXJhc3FlLWF1dGgiLCJhdWQiOiJmaWd1cmFzcWUtY2xpZW50IiwiaWF0IjoxNzc4NTMyMjEzLCJleHAiOjE3Nzg1MzU4MTN9.o2RIff3FUgEOIcE6Q_pA8L7kvlmJVtqjVB9Fmh6aUwg
+@studentId = 33
+@tutorId = 13
 
 ### Obtener estudiantes (depende del rol del token)
 GET {{host}}/students
@@ -25,7 +25,7 @@ Content-Type: application/json
   "email": "ana.student@example.com",
   "passwordHash": "StudentPass123",
   "age": 10,
-  "genre": "F",
+  "gender": "F",
   "country": "CO",
   "neurodivergency": "None"
 }
@@ -41,7 +41,7 @@ Content-Type: application/json
   "email": "ana.student@example.com",
   "passwordHash": "StudentPass1234",
   "age": 11,
-  "genre": "F",
+  "gender": "M",
   "country": "CO",
   "neurodivergency": "None"
 }

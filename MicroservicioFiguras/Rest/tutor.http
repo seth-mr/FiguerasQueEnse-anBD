@@ -1,6 +1,6 @@
 @host = http://localhost:5124
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5IiwiZW1haWwiOiJzZXRoYXNhc2Fzb0BleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3NzA2NzUzMywiZXhwIjoxNzc3MDcxMTMzfQ.bx4Ap-52Aawd56bctX4PUepafvSHG6dHZamMWdqwalk
-@tutorId = 9
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoiYW5kcm9pZEBleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3ODUzMjI5NiwiZXhwIjoxNzc4NTM1ODk2fQ.UAnDHymr0-AEgtLbUNaw0hzOIXTMGK_KOwTUmNQmD90
+@tutorId = 13
 
 GET {{host}}/tutors
 Authorization: Bearer {{token}}
@@ -26,9 +26,9 @@ Content-Type: application/json
   "email": "carlos.gabriel@example.com",
   "passwordHash": "TutorPass123",
   "country": "CO",
-  "gender": "Masculino",
+  "gender": "M",
   "age": 35,
-  "grade": "Maestria"
+  "degree": "Maestria"
 }
 
 
@@ -42,10 +42,10 @@ Content-Type: application/json
   "name": " Actualizado nuevamente",
   "email": "sethasasaso@example.com",
   "role": "tutor",
-  "country": "CORP",
-  "gender": "Masculino",
+  "country": "MX",
+  "gender": "M",
   "age": 19,
-  "grade": "licenciatura"
+  "degree": "maestria"
 }
 
 ### Eliminar tutor

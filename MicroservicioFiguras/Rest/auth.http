@@ -11,10 +11,10 @@ Content-Type: application/json
   "password": "TutorPass123!",
   "role": "tutor",
   "country": "CO",
-  "grade": "Padre o Madre",
+  "degree": "padre-madre",
   "neurodivergency": "None",
   "age": 30,
-  "genre": "M"
+  "gender": "M"
 }
 
 ###
@@ -31,7 +31,7 @@ Content-Type: application/json
   "country": "CO",
   "neurodivergency": "None",
   "age": 10,
-  "genre": "F"
+  "gender": "F"
 }
 
 ###
@@ -52,20 +52,20 @@ POST {{authHost}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "ana.student@example.com",
-  "password": "StudentPass123"
+  "email": "gabo@example.com",
+  "password": "StudentPass123@"
 }
 
 ###
 
 ### 5. Asignar tutor al estudiante (requiere token de tutor)
-@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4IiwiZW1haWwiOiJzZXRoQGV4YW1wbGUuY29tIiwicm9sZSI6InR1dG9yIiwiaXNzIjoiZmlndXJhc3FlLWF1dGgiLCJhdWQiOiJmaWd1cmFzcWUtY2xpZW50IiwiaWF0IjoxNzc3MDA1MDc4LCJleHAiOjE3NzcwMDg2Nzh9.h_-2nNFJhHZPmfwXvUFMNG4oFM-iqpf73PHJb8IFHjQ
+@tutorToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMyIsImVtYWlsIjoiYW5kcm9pZEBleGFtcGxlLmNvbSIsInJvbGUiOiJ0dXRvciIsImlzcyI6ImZpZ3VyYXNxZS1hdXRoIiwiYXVkIjoiZmlndXJhc3FlLWNsaWVudCIsImlhdCI6MTc3ODUzMTYwOCwiZXhwIjoxNzc4NTM1MjA4fQ.VTweSaHfQn_oJiYPuK8USinXOdy5AQKSd4T7M56zF1A
 POST {{figuresHost}}/tutors/assign-student
 Authorization: Bearer {{tutorToken}}
 Content-Type: application/json
 
 {
-  "studentEmail": "songohan@capsule.cc",
-  "tutorEmail": "songoku@capsule.cc"
+  "studentEmail": "gabo@example.com",
+  "tutorEmail": "android@example.com"
 }
 

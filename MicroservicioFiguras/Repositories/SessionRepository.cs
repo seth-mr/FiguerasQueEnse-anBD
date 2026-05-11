@@ -37,7 +37,7 @@ public class SessionRepository : Repository<Session>, ISessionRepository
                     IdTutor = s.IdStudentNavigation.IdTutor,
                     Name = s.IdStudentNavigation.Name,
                     Age = s.IdStudentNavigation.Age,
-                    Genre = s.IdStudentNavigation.Genre,
+                    Gender = s.IdStudentNavigation.Gender,
                     Country = s.IdStudentNavigation.Country
                 },
                 LevelResults = s.LevelResults.Select(r => new LevelResultBasicDto
@@ -71,7 +71,7 @@ public class SessionRepository : Repository<Session>, ISessionRepository
                     IdTutor = s.IdStudentNavigation.IdTutor,
                     Name = s.IdStudentNavigation.Name,
                     Age = s.IdStudentNavigation.Age,
-                    Genre = s.IdStudentNavigation.Genre,
+                    Gender = s.IdStudentNavigation.Gender,
                     Country = s.IdStudentNavigation.Country
                 },
                 LevelResults = s.LevelResults.Select(r => new LevelResultBasicDto

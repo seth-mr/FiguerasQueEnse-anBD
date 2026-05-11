@@ -19,11 +19,11 @@ public class TutorDto
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
     public string Country { get; set; } = string.Empty;
 
-    public string? Gender { get; set; }
+    public char? Gender { get; set; }
 
     public int? Age { get; set; }
 
-    public string? Grade { get; set; }
+    public string? Degree { get; set; }
 
     public DateTime? RegistrationDate { get; set; }
     public List<StudentBasicDto>? Students { get; set; }
@@ -49,14 +49,14 @@ public class CreateTutorDto
     public string Country { get; set; } = string.Empty;
 
     [RegularExpression(@"^[MFO]$", ErrorMessage = "Gender must be 'M', 'F' or 'O'.")]
-    public string? Gender { get; set; }
+    public char? Gender { get; set; }
 
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
     public int? Age { get; set; }
 
-    [RegularExpression("^(licenciatura|Maestria|Doctorado|Post Doctorado|Padre o Madre)$",
-        ErrorMessage = "Grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
-    public string? Grade { get; set; }
+    [RegularExpression("^(licenciatura|maestria|doctorado|postdoctorado|padre-madre|otro)$",
+        ErrorMessage = "Degree must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
+    public string? Degree { get; set; }
 }
 
 public class UpdateTutorDto
@@ -74,12 +74,12 @@ public class UpdateTutorDto
     public string Country { get; set; } = string.Empty;
 
     [RegularExpression(@"^[MFO]$", ErrorMessage = "Gender must be 'M', 'F' or 'O'.")]
-    public string? Gender { get; set; }
+    public char? Gender { get; set; }
 
     [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
     public int? Age { get; set; }
 
-    [RegularExpression("^(licenciatura|maestria|doctorado|post doctorado|padre o madre|otro)$",
-        ErrorMessage = "grade must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre, Otro.")]
-    public string? Grade { get; set; }
+    [RegularExpression("^(licenciatura|maestria|doctorado|postdoctorado|padre-madre|otro)$",
+        ErrorMessage = "Degree must be one of: licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre, Otro.")]
+    public string? Degree { get; set; }
 }

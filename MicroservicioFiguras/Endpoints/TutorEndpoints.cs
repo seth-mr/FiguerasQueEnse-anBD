@@ -53,7 +53,7 @@ namespace MicroservicioFiguras.Endpoints
                     Country = dto.Country,
                     Gender = dto.Gender,
                     Age = dto.Age,
-                    Grade = dto.Grade
+                    Degree = dto.Degree
                 };
 
                 var created = await repository.AddAsync(tutor);
@@ -113,7 +113,7 @@ namespace MicroservicioFiguras.Endpoints
                 existingTutor.Country = dto.Country;
                 existingTutor.Gender = dto.Gender;
                 existingTutor.Age = dto.Age;
-                existingTutor.Grade = dto.Grade;
+                existingTutor.Degree = dto.Degree;
 
                 await repository.UpdateAsync(existingTutor);
                 return await EndpointResponseHelper.UpdateWithDetailsAsync(id, repository.GetByIdWithStudentsAsync);
