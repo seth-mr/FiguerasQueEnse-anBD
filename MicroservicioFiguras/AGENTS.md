@@ -26,6 +26,9 @@ Guidance for AI coding agents working in this repository.
 - A global fallback policy enforces authentication for all routes (see [Program.cs](Program.cs)).
 - Role-based behavior is implemented inside endpoint handlers for student/tutor access checks (see [Endpoints/StudentEndpoints.cs](Endpoints/StudentEndpoints.cs)).
 - **Self-access pattern**: tutor endpoints extract JWT user ID via `JwtClaimsHelper.GetUserId()`, check role via `GetUserRole()`, then return `Results.Forbid()` if the caller's ID doesn't match the requested resource ID.
+- **Sessions ownership rule**: session access is restricted by ownership. Tutors can access only sessions of their assigned students; students can access only their own sessions.
+- **Session end-time source of truth**: `Session.EndDate` is server-managed and updated when level-result events are recorded; clients should not rely on manually setting session end-time.
+- **Level-results ownership rule**: level-result access is restricted through the linked session's student. Tutors can access only results for sessions of their assigned students; students can access only results for their own sessions.
 - **Claim name variants**: `JwtClaimsHelper` tries `NameIdentifier`, then falls back to `"sub"`/`"userId"`; role tries standard `Role` claim then `"role"`.
 - This service validates JWT tokens; login/register endpoints are not exposed here (they are consumed from another service in [Rest/auth.http](Rest/auth.http)).
 
@@ -52,6 +55,8 @@ Source of truth: all `app.MapGet/MapPost/MapPut/MapDelete` in [Endpoints](Endpoi
 - `DELETE /tutors/{id:int}`
 
 ### Sessions
+- `GET /tutors/{tutorId:int}/sessions`
+- `GET /students/{studentId:int}/sessions`
 - `GET /sessions`
 - `GET /sessions/{id:int}`
 - `POST /sessions`

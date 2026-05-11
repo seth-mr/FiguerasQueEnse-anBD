@@ -29,6 +29,15 @@ public class CreateSessionDto : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
+        var serverNow = DateTime.Now;
+
+        if (BeginningDate.HasValue && BeginningDate.Value > serverNow)
+        {
+            yield return new ValidationResult(
+                "BeginningDate cannot be in the future.",
+                new[] { nameof(BeginningDate) });
+        }
+
         if (BeginningDate.HasValue && EndDate.HasValue && EndDate < BeginningDate)
         {
             yield return new ValidationResult(
@@ -50,6 +59,15 @@ public class UpdateSessionDto : IValidatableObject
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
+        var serverNow = DateTime.Now;
+
+        if (BeginningDate.HasValue && BeginningDate.Value > serverNow)
+        {
+            yield return new ValidationResult(
+                "BeginningDate cannot be in the future.",
+                new[] { nameof(BeginningDate) });
+        }
+
         if (BeginningDate.HasValue && EndDate.HasValue && EndDate < BeginningDate)
         {
             yield return new ValidationResult(

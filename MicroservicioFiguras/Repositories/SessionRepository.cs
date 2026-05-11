@@ -84,4 +84,54 @@ public class SessionRepository : Repository<Session>, ISessionRepository
             })
             .FirstOrDefaultAsync();
     }
+
+    public async Task<bool> UpdateEndDateAsync(int sessionId, DateTime? endDate)
+    {
+        var session = await _context.Sessions.FirstOrDefaultAsync(s => s.IdSession == sessionId);
+        if (session is null)
+        {
+            return false;
+        }
+
+        session.EndDate = NormalizeTimestampWithoutTimeZone(endDate);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> ClearEndDateIfWithoutLevelResultsAsync(int sessionId)
+    {
+        var session = await _context.Sessions
+            .Include(s => s.LevelResults)
+            .FirstOrDefaultAsync(s => s.IdSession == sessionId);
+
+        if (session is null)
+        {
+            return false;
+        }
+
+        if (session.LevelResults.Count != 0 || session.EndDate is null)
+        {
+            return true;
+        }
+
+        session.EndDate = null;
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+    private static DateTime? NormalizeTimestampWithoutTimeZone(DateTime? value)
+    {
+        if (!value.HasValue)
+        {
+            return null;
+        }
+
+        var normalized = value.Value.Kind switch
+        {
+            DateTimeKind.Utc => value.Value.ToLocalTime(),
+            _ => value.Value
+        };
+
+        return DateTime.SpecifyKind(normalized, DateTimeKind.Unspecified);
+    }
 }

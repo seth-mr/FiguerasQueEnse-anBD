@@ -158,22 +158,28 @@ public class StudentRepository : Repository<Student>, IStudentRepository
         };
     }
 
-    public async Task<bool> AssignTutorByEmailAsync(string studentEmail, string tutorEmail)
+    public async Task<AssignTutorByEmailResult> AssignTutorByEmailAsync(string studentEmail, string tutorEmail)
     {
         var student = await _context.Students.FirstOrDefaultAsync(s => s.Email == studentEmail);
         if (student == null)
         {
-            return false;
+            var tutorWithStudentEmail = await _context.Tutors
+                .AsNoTracking()
+                .AnyAsync(t => t.Email == studentEmail);
+
+            return tutorWithStudentEmail
+                ? AssignTutorByEmailResult.StudentEmailBelongsToTutor
+                : AssignTutorByEmailResult.StudentNotFound;
         }
 
         var tutor = await _context.Tutors.FirstOrDefaultAsync(t => t.Email == tutorEmail);
         if (tutor == null)
         {
-            return false;
+            return AssignTutorByEmailResult.TutorNotFound;
         }
 
         student.IdTutor = tutor.IdTutor;
         await _context.SaveChangesAsync();
-        return true;
+        return AssignTutorByEmailResult.Success;
     }
 }
