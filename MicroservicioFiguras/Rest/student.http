@@ -79,14 +79,14 @@ Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "idTutor": {{tutor47}},
-  "name": "Student Api Only",
-  "email": "student.api.only@mail.com",
-  "passwordHash": "$2a$11$7Vw8W5jkn8z3KwW4wS8Q2OqN4eM35Q79I6fQb2TK9I2G1K8gM3zGa",
-  "age": 13,
-  "genre": "F",
-  "country": "MX",
-  "neurodivergency": null
+  "idTutor": {{tutorId}},
+  "name": "Ana Lopez",
+  "email": "ana.student@example.com",
+  "passwordHash": "StudentPass123",
+  "age": 10,
+  "gender": "F",
+  "country": "CO",
+  "neurodivergency": "None"
 }
 
 ### PUT /students/{id}
@@ -95,14 +95,14 @@ Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "idTutor": {{tutor47}},
-  "name": "Luis Martinez",
-  "email": "luis.martinez@mail.com",
-  "passwordHash": "$2a$11$Gx6yrG8ixQPigyB6LGu21Oih9zEngJVv2kH/OHXAok8JZd.8rhx5G",
-  "age": 15,
-  "genre": "M",
-  "country": "MX",
-  "neurodivergency": "ADHD"
+  "idTutor": {{tutorId}},
+  "name": "Ana Lopez Actualizada",
+  "email": "ana.student@example.com",
+  "passwordHash": "StudentPass1234",
+  "age": 11,
+  "gender": "M",
+  "country": "CO",
+  "neurodivergency": "None"
 }
 
 ### DELETE /students/{id}

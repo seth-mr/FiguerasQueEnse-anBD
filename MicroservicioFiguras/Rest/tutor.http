@@ -48,13 +48,13 @@ Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "name": "Tutor Api Only",
-  "email": "tutor.api.only@mail.com",
-  "passwordHash": "$2a$11$9u3w46fbrhUsWyJ8j74gEelZZ8u1zk6rcP4A1QKVc9NwQ8dG2J3Qm",
-  "country": "AR",
-  "gender": "F",
-  "age": 41,
-  "grade": "Doctorado"
+  "name": "Carlos Ramirez",
+  "email": "carlos.gabriel@example.com",
+  "passwordHash": "TutorPass123",
+  "country": "CO",
+  "gender": "M",
+  "age": 35,
+  "degree": "Maestria"
 }
 
 ### PUT /tutors/{id}

@@ -31,7 +31,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 Country = t.Country ?? string.Empty,
                 Gender = t.Gender,
                 Age = t.Age,
-                Grade = t.Grade,
+                Degree = t.Degree,
                 RegistrationDate = t.RegistrationDate,
                 Students = t.Students.Select(s => new StudentBasicDto
                 {
@@ -39,7 +39,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                     IdTutor = s.IdTutor,
                     Name = s.Name,
                     Age = s.Age,
-                    Genre = s.Genre,
+                    Gender = s.Gender,
                     Country = s.Country
                 }).ToList()
             })
@@ -60,7 +60,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                 Country = t.Country ?? string.Empty,
                 Gender = t.Gender,
                 Age = t.Age,
-                Grade = t.Grade,
+                Degree = t.Degree,
                 RegistrationDate = t.RegistrationDate,
                 Students = t.Students.Select(s => new StudentBasicDto
                 {
@@ -68,7 +68,7 @@ public class TutorRepository : Repository<Tutor>, ITutorRepository
                     IdTutor = s.IdTutor,
                     Name = s.Name,
                     Age = s.Age,
-                    Genre = s.Genre,
+                    Gender = s.Gender,
                     Country = s.Country
                 }).ToList()
             })

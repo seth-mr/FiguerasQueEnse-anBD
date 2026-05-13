@@ -24,7 +24,7 @@ public class CreateStudentDto
     public int Age { get; set; }
 
     [RegularExpression(@"^[MF]$", ErrorMessage = "Genre must be 'M' or 'F'.")]
-    public char Genre { get; set; }
+    public char Gender { get; set; }
 
     [Required(ErrorMessage = "Country is required")]
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]

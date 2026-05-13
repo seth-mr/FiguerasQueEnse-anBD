@@ -28,18 +28,8 @@ public partial class FigurasqeContext : DbContext
     public virtual DbSet<Tutor> Tutors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (optionsBuilder.IsConfigured)
-        {
-            return;
-        }
-
-        var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__PostgresConnection");
-        if (!string.IsNullOrWhiteSpace(connectionString))
-        {
-            optionsBuilder.UseNpgsql(connectionString);
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=figurasqe;Username=postgres;Password=1234");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -129,9 +119,9 @@ public partial class FigurasqeContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
-            entity.Property(e => e.Genre)
+            entity.Property(e => e.Gender)
                 .HasMaxLength(1)
-                .HasColumnName("genre");
+                .HasColumnName("gender");
             entity.Property(e => e.IdTutor).HasColumnName("id_tutor");
             entity.Property(e => e.Name)
                 .HasMaxLength(120)
@@ -161,27 +151,26 @@ public partial class FigurasqeContext : DbContext
             entity.HasIndex(e => e.Email, "tutors_email_key").IsUnique();
 
             entity.Property(e => e.IdTutor).HasColumnName("id_tutor");
+            entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.Country)
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .HasColumnName("country");
+            entity.Property(e => e.Degree)
+                .HasMaxLength(20)
+                .HasColumnName("degree");
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(1)
+                .HasColumnName("gender");
             entity.Property(e => e.Name)
                 .HasMaxLength(120)
                 .HasColumnName("name");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(255)
                 .HasColumnName("password_hash");
-            entity.Property(e => e.Gender)
-                .HasMaxLength(20)
-                .HasColumnName("gender");
-            entity.Property(e => e.Age)
-                .HasColumnName("age");
-            entity.Property(e => e.Grade)
-                .HasMaxLength(20)
-                .HasColumnName("grade");
             entity.Property(e => e.RegistrationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")

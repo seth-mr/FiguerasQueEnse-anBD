@@ -59,7 +59,7 @@ namespace MicroservicioFiguras.Endpoints
                     Email = dto.Email,
                     PasswordHash = dto.PasswordHash,
                     Age = dto.Age,
-                    Genre = dto.Genre,
+                    Gender = dto.Gender,
                     Country = dto.Country,
                     Neurodivergency = dto.Neurodivergency
                 };
@@ -100,9 +100,8 @@ namespace MicroservicioFiguras.Endpoints
                 existingStudent.IdTutor = dto.IdTutor;
                 existingStudent.Name = dto.Name;
                 existingStudent.Email = dto.Email;
-                existingStudent.PasswordHash = dto.PasswordHash;
                 existingStudent.Age = dto.Age;
-                existingStudent.Genre = dto.Genre;
+                existingStudent.Gender = dto.Gender;
                 existingStudent.Country = dto.Country;
                 existingStudent.Neurodivergency = dto.Neurodivergency;
 
