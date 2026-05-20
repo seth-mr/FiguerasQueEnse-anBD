@@ -15,6 +15,8 @@ public partial class FigurasqeContext : DbContext
     {
     }
 
+    public virtual DbSet<Admin> Admins { get; set; }
+
     public virtual DbSet<Level> Levels { get; set; }
 
     public virtual DbSet<LevelResult> LevelResults { get; set; }
@@ -33,6 +35,38 @@ public partial class FigurasqeContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Admin>(entity =>
+        {
+            entity.HasKey(e => e.IdAdmin).HasName("admins_pkey");
+
+            entity.ToTable("admins");
+
+            entity.HasIndex(e => e.Email, "admins_email_key").IsUnique();
+
+            entity.HasIndex(e => e.Username, "admins_username_key").IsUnique();
+
+            entity.Property(e => e.IdAdmin).HasColumnName("id_admin");
+            entity.Property(e => e.Email)
+                .HasMaxLength(120)
+                .HasColumnName("email");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
+            entity.Property(e => e.PasswordHash)
+                .HasMaxLength(255)
+                .HasColumnName("password_hash");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .HasColumnName("phone");
+            entity.Property(e => e.RegistrationDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("registration_date");
+            entity.Property(e => e.Username)
+                .HasMaxLength(60)
+                .HasColumnName("username");
+        });
+
         modelBuilder.Entity<Level>(entity =>
         {
             entity.HasKey(e => e.IdLevel).HasName("levels_pkey");

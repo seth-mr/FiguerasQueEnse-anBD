@@ -45,6 +45,16 @@ Source of truth: all `app.MapGet/MapPost/MapPut/MapDelete` in [Endpoints](Endpoi
 - `GET /students/tutor/{tutorId:int}/ids`
 - `GET /students/{studentId:int}/sessions/ids`
 
+### Admins
+- `GET /admins`
+- `GET /admins/{id:int}`
+- `POST /admins` — permite bootstrap anonimo solo cuando todavia no existe ningun admin; despues requiere rol `admin`
+- `PUT /admins/{id:int}`
+- `DELETE /admins/{id:int}`
+
+### Dashboard
+- `GET /dashboard/summary` — admin-only; resumen agregado para panel con estadisticas de estudiantes, tutores y actividad
+
 ### Tutors
 - `GET /tutors` — **returns the calling tutor's own record** (role-gated: tutor only; does NOT return all tutors)
 - `GET /tutors/{id:int}`

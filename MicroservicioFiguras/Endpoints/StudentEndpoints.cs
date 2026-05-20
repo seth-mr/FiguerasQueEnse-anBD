@@ -61,7 +61,8 @@ namespace MicroservicioFiguras.Endpoints
                     Age = dto.Age,
                     Gender = dto.Gender,
                     Country = dto.Country,
-                    Neurodivergency = dto.Neurodivergency
+                    Neurodivergency = dto.Neurodivergency,
+                    RegistrationDate = DateTime.Now
                 };
 
                 var created = await repository.AddAsync(student);

@@ -4,7 +4,7 @@
 @tutor47Token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NyIsImVtYWlsIjoianVhbi5nYXJjaWFAbWFpbC5jb20iLCJyb2xlIjoidHV0b3IiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3NzgzNzI0MDMsImV4cCI6MTc3ODM3NjAwM30.0_dZ7LMJRTTZC_oSbGnU2BYMXUEkNoRcBrOX6cFJZHw
 @tutor48Token = <PEGAR_TOKEN_TUTOR_48>
 @student17Token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNyIsImVtYWlsIjoibHVpcy5tYXJ0aW5lekBtYWlsLmNvbSIsInJvbGUiOiJzdHVkZW50IiwiaXNzIjoiZmlndXJhc3FlLWF1dGgiLCJhdWQiOiJmaWd1cmFzcWUtY2xpZW50IiwiaWF0IjoxNzc4MzcyNzA2LCJleHAiOjE3NzgzNzYzMDZ9.oi2z789OvTEYf762ncPFZHZk7faabxZxEaXUU-De_qc
-@student19Token = <PEGAR_TOKEN_STUDENT_19>
+@student19Token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxOSIsImVtYWlsIjoicGFibG8ucm9kcmlndWV6QG1haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpc3MiOiJmaWd1cmFzcWUtYXV0aCIsImF1ZCI6ImZpZ3VyYXNxZS1jbGllbnQiLCJpYXQiOjE3Nzg2Mzg4MTUsImV4cCI6MTc3ODY0MjQxNX0.sTKI3BoPccS-6oeEUg6BGVUfqr8xXPMXvH_knptaQlE
 
 @student17 = 17
 @student18 = 18
@@ -33,9 +33,9 @@ GET {{host}}/students/{{student19}}
 Authorization: Bearer {{tutor47Token}}
 Accept: application/json
 
-### [OK] Student 17: ver su propio perfil
-GET {{host}}/students/{{student17}}
-Authorization: Bearer {{student17Token}}
+### [OK] Student 19: ver su propio perfil
+GET {{host}}/students/{{student19}}
+Authorization: Bearer {{student19Token}}
 Accept: application/json
 
 ### [FORBIDDEN esperado] Student 17: no puede ver student 18
@@ -79,7 +79,7 @@ Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "idTutor": {{tutorId}},
+  "idTutor": {{17 }},
   "name": "Ana Lopez",
   "email": "ana.student@example.com",
   "passwordHash": "StudentPass123",
@@ -95,7 +95,7 @@ Authorization: Bearer {{tutor47Token}}
 Content-Type: application/json
 
 {
-  "idTutor": {{tutorId}},
+  "idTutor": {{17 }},
   "name": "Ana Lopez Actualizada",
   "email": "ana.student@example.com",
   "passwordHash": "StudentPass1234",

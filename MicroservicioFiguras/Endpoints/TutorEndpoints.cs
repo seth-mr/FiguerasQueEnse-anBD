@@ -53,7 +53,8 @@ namespace MicroservicioFiguras.Endpoints
                     Country = dto.Country,
                     Gender = dto.Gender,
                     Age = dto.Age,
-                    Degree = dto.Degree
+                    Degree = dto.Degree,
+                    RegistrationDate = DateTime.Now
                 };
 
                 var created = await repository.AddAsync(tutor);

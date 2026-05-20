@@ -39,6 +39,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization(options =>
 {
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireClaim(ClaimTypes.Role, "admin"));
+
     options.AddPolicy("StudentOnly", policy =>
         policy.RequireClaim(ClaimTypes.Role, "student"));
 
@@ -55,6 +58,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ITutorRepository, TutorRepository>();
 builder.Services.AddScoped<ILevelRepository, LevelRepository>();
@@ -76,6 +81,17 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapGet("/health", async (FigurasqeContext db) =>
+{
+    var canConnect = await db.Database.CanConnectAsync();
+
+    return canConnect
+        ? Results.Ok(new { service = "data", status = "ok", database = "ok" })
+        : Results.Json(new { service = "data", status = "down", database = "unavailable" }, statusCode: 503);
+}).AllowAnonymous();
+
+app.MapAdminEndpoints();
+app.MapDashboardEndpoints();
 app.MapStudentEndpoints();
 app.MapTutorEndpoints();
 app.MapLevelEndpoints();
