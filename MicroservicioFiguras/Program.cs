@@ -71,6 +71,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
+
+// Leer puerto desde appsettings.json
+var servicePort = builder.Configuration.GetValue<int?>("Service:Port") ?? 5124;
+builder.WebHost.UseUrls($"http://*:{servicePort}");
+
+// Leer endpoints externos desde appsettings.json
+var authServiceUrl = builder.Configuration["Service:Endpoints:AuthService"] ?? "http://localhost:5041";
+var logsServiceUrl = builder.Configuration["Service:Endpoints:LogsService"] ?? "http://localhost:5186";
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
